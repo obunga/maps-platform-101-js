@@ -19,6 +19,7 @@ loadMapsJSAPI();
 function runApp() {
   console.log('Maps JS API loaded');
   const map = displayMap();
+  const markers = addMarkers(map);
 }
 
 function loadMapsJSAPI() {
@@ -43,4 +44,26 @@ function displayMap() {
   const mapDiv = document.getElementById('map');
   const map = new google.maps.Map(mapDiv, mapOptions);
   return map;
+}
+
+function addMarkers(map) {
+  const locations = {
+    mbuinzau: { lat: -2.366600, lng: 37.900000 },
+    kibwezi: { lat:  -2.410420, lng: 37.967819 },
+    kiboko: { lat:  -2.211530, lng: 37.721111 },
+    makindu: {lat:  -2.278620, lng: 37.826038 },
+    kalulini: { lat:  -2.350000, lng: 37.983300 },
+   chyuluHills: { lat:  -2.682527, lng: 37.893083 }
+  }
+  const markers = [];
+  for  (const location in locations) {
+    const markerOptions = {
+      map: map,
+      position: locations[location],
+      icon: './img/custom_pin.png'
+    }
+    const marker = new google.maps.Marker(markerOptions);
+    markers.push(marker);
+  }
+  return markers;
 }
