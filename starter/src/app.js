@@ -19,7 +19,7 @@ function runApp() {
 }
 
 function loadMapsJSAPI(googleMapsAPIKey) {
-  const googleMapsAPIKey = 'AIzaSyAr3beVjCYqlA-UX6o6tUiQ9gmGFz1wIcc';
+  const googleMapsAPIKey = 'YOUR API KEY';
   const googleMapsAPIURI = 'https://maps.googleapis.com/maps/api/js?key=${googleMapsAPIKey}&callback=runApp';
   
   const script = document.createElement('script');
