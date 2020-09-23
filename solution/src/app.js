@@ -78,3 +78,13 @@ function clusterMarkers(map, markers) {
   const clusteredOptions = { imagePath: './img/m' }
   const markerCluster = new MarkerClusterer(map, markers, clusteredOptions);
 }
+
+function addPanToMarker(map, markers) {
+  markers.map(marker => {
+    marker.addListener('click', event => {
+      const location - { lat: event.latlng.lat(), lng: event.latlng.lng() };
+      map.panTo(location);
+    });
+  });
+  return markers;
+}
