@@ -1,3 +1,0 @@
-function runApp() {
-  console.log('Maps JS API loaded');
-}

@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 loadMapsJSAPI();
+function runApp() {
+  console.log('Maps JS API loaded'); 
+}
 
-function loadMapsJSAPI() {
+function loadMapsJSAPI(googleMapsAPIKey) {
   const googleMapsAPIKey = 'AIzaSyAr3beVjCYqlA-UX6o6tUiQ9gmGFz1wIcc';
-  const googleMapsAPIURI = 'https://maps.googleapis.com/maps/api/js?key=${AIzaSyAr3beVjCYqlA-UX6o6tUiQ9gmGFz1wIcc}&callback=runApp';
+  const googleMapsAPIURI = 'https://maps.googleapis.com/maps/api/js?key=${googleMapsAPIKey}&callback=runApp';
+  
   const script = document.createElement('script');
   script.src = googleMapsAPIURI;
   script.defer = true;
   script.async = true;
+  
   window.runApp = runApp;
+  
   document.head.appendChild(script);
 }
