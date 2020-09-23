@@ -24,6 +24,7 @@ function runApp() {
   const markers = addMarkers(map);
   clusterMarkers(map, markers);
   addPanToMarker(map, markers);
+  infowindow.open(map, markers);
 }
 
 function loadMapsJSAPI() {
@@ -107,3 +108,48 @@ function drawCircle(map, location) {
   const circle = new google.maps.Circle(circleOptions);
   return circle;
 }
+
+function initMap() {
+  var makinduAirStrip = { lat: -2.287126, lng: 37.821984 };
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: makinduAirStrip
+  });
+
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">Makindu</h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>Makindu</b> is a small town in Makueni County of Kenya, on the Nairobi-Mombasa highway. ' +
+      'The settlement was established as a base for railway construction.'+
+      'The Sikh Temple in Makindu was built at that time.'+
+      '<b>Points of Interest</b>'+
+      'The offices of Makindu Town Council.'+
+      'The offices of Makindu sub-county. '+
+      'The Shushan Palace Hotel. '+
+      'Makindu Sikh Temple. '+
+      'Makindu General Hospital. '+
+      'Kenya Commercial Bank.</p>'+
+      '<p>Attribution: Makindu <a href="https://asili.photos">'+
+      'https://asili.photos/category/plants.html '+
+      '(last visited September 22, 2020).</p>'+
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: makindu,
+    map: map,
+    title: 'Makindu, My Home'
+  });
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
+
+
+
