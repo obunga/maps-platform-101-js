@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+import MarkerClusterer from '@google/markerclustererplus';
+
 loadMapsJSAPI();
 
 function runApp() {
   console.log('Maps JS API loaded');
   const map = displayMap();
   const markers = addMarkers(map);
+  clusterMarkers(map, markers);
 }
 
 function loadMapsJSAPI() {
@@ -53,7 +56,10 @@ function addMarkers(map) {
     kiboko: { lat:  -2.211530, lng: 37.721111 },
     makindu: {lat:  -2.278620, lng: 37.826038 },
     kalulini: { lat:  -2.350000, lng: 37.983300 },
-   chyuluHills: { lat:  -2.682527, lng: 37.893083 }
+    chyuluHills: { lat:  -2.682527, lng: 37.893083 },
+    sikhTempleMakindu: { lat:  -2.282070, lng: 37.821683 },
+    jamiaMosqueMakindu: { lat:  -2.279509, lng: 37.820329 },
+    makinduLawCourts: { lat:  -2.285469, lng: 37.819131 }
   }
   const markers = [];
   for  (const location in locations) {
@@ -66,4 +72,9 @@ function addMarkers(map) {
     markers.push(marker);
   }
   return markers;
+}
+
+function clusterMarkers(map, markers) {
+  const clusteredOptions = { imagePath: './img/m' }
+  const markerCluster = new MarkerClusterer(map, markers, clusteredOptions);
 }
