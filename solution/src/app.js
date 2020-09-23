@@ -18,6 +18,7 @@ loadMapsJSAPI();
 
 function runApp() {
   console.log('Maps JS API loaded');
+  const map = displayMap();
 }
 
 function loadMapsJSAPI() {
@@ -34,3 +35,12 @@ function loadMapsJSAPI() {
   document.head.appendChild(script);
 }
 
+function displayMap() {
+  const mapOptions = {
+    center: { lat: -2.278620, lng: 37.826038 },
+    zoom: 14
+  };
+  const mapDiv = document.getElementById('map');
+  const map = new google.maps.Map(mapDiv, mapOptions);
+  return map;
+}
