@@ -23,6 +23,7 @@ function runApp() {
   const map = displayMap();
   const markers = addMarkers(map);
   clusterMarkers(map, markers);
+  addPanToMarker(map, markers);
 }
 
 function loadMapsJSAPI() {
@@ -80,11 +81,29 @@ function clusterMarkers(map, markers) {
 }
 
 function addPanToMarker(map, markers) {
-  markers.map(marker => {
+  let circle;
+  markers = markers.map(marker => {
     marker.addListener('click', event => {
-      const location - { lat: event.latlng.lat(), lng: event.latlng.lng() };
+      const location = { lat: event.latLng.lat(), lng: event.latLng.lng() };
       map.panTo(location);
+      if (circle) {
+	circle.setMap(null);
+      }
+      circle = drawCircle(map, location);
     });
   });
   return markers;
+}
+
+function drawCircle(map, location) {
+  const circleOptions = {
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 1,
+    map: map,
+    center: location,
+    radius: 600
+  }
+  const circle = new google.maps.Circle(circleOptions);
+  return circle;
 }
