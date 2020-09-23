@@ -13,3 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+loadMapsJSAPI();
+
+function loadMapsJSAPI() {
+  const googleMapsAPIKey = 'AIzaSyAr3beVjCYqlA-UX6o6tUiQ9gmGFz1wIcc';
+  const googleMapsAPIURI = 'https://maps.googleapis.com/maps/api/js?key=${AIzaSyAr3beVjCYqlA-UX6o6tUiQ9gmGFz1wIcc}&callback=runApp';
+  const script = document.createElement('script');
+  script.src = googleMapsAPIURI;
+  script.defer = true;
+  script.async = true;
+  window.runApp = runApp;
+  document.head.appendChild(script);
+}
